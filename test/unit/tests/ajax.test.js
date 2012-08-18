@@ -445,6 +445,8 @@ suite("Ajax", function () {
      '/foo/bar.html should be same-origin');
     assert(isSameOrigin.call({ url: window.location.toString() }),
      'current window location should be same-origin');
+    assert(isSameOrigin.call({ url: window.location }) }),
+     'current window location should be same-origin');
     assert(!isSameOrigin.call({ url: 'http://example.com' }),
      'example.com should not be same-origin');
 
