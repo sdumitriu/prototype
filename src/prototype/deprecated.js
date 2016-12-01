@@ -4,7 +4,9 @@ Hash.toQueryString = Object.toQueryString;
 
 var Toggle = { display: Element.toggle };
 
-Element.Methods.childOf = Element.Methods.descendantOf;
+Element.addMethods({
+  childOf: Element.Methods.descendantOf
+});
 
 var Insertion = {
   Before: function(element, content) {
@@ -202,7 +204,7 @@ var Selector = (function() {
     initialize: function(expression) {
       this.expression = expression.strip();
     },
-  
+
     /** deprecated
      *  Selector#findElements(root) -> [Element...]
      *  - root (Element | document): A "scope" to search within. All results will
@@ -214,7 +216,7 @@ var Selector = (function() {
     findElements: function(rootElement) {
       return Prototype.Selector.select(this.expression, rootElement);
     },
-  
+
     /** deprecated
      *  Selector#match(element) -> Boolean
      *
@@ -223,11 +225,11 @@ var Selector = (function() {
     match: function(element) {
       return Prototype.Selector.match(element, this.expression);
     },
-  
+
     toString: function() {
       return this.expression;
     },
-  
+
     inspect: function() {
       return "#<Selector: " + this.expression + ">";
     }
@@ -244,7 +246,7 @@ var Selector = (function() {
     matchElements: function(elements, expression) {
       var match = Prototype.Selector.match,
           results = [];
-          
+
       for (var i = 0, length = elements.length; i < length; i++) {
         var element = elements[i];
         if (match(element, expression)) {
