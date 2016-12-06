@@ -345,6 +345,11 @@ suite('DOM', function () {
 
   });
 
+  test("Insertion (onclick attribute)", function() {
+    $('element-insertions-main').insert({top: '<span onclick="alert(1)">clickme</span>'});
+    assert(typeof $('element-insertions-main').down().onclick == 'function');
+  });
+
 
   test('Insertion (backwards-compatibility)', function () {
     new Insertion.Before('element-insertions-main', 'some backward-compatibility testing before');
@@ -532,6 +537,11 @@ suite('DOM', function () {
     assert.nothingRaised(function () {
       el.update('(function(){})');
     });
+  });
+
+  test("#update (with onclick attribute)", function() {
+    $('testdiv').update('<span onclick="alert(1)">clickme</span>');
+    assert(typeof $('testdiv').down().onclick == 'function');
   });
 
   test('#replace', function () {
